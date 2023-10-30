@@ -12,4 +12,5 @@ else
 	gsettings set org.gnome.system.proxy mode 'none'
 	killall clash
 	echo "convert to disabled"
+	env | grep proxy
 fi
