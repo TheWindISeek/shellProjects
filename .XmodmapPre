@@ -1,0 +1,11 @@
+!normal
+keycode 79 = KP_Home KP_7 KP_Home KP_7
+keycode 84 = KP_Begin KP_5 KP_Begin KP_5
+keycode 87 = KP_End KP_1 KP_End KP_1
+keycode 90 = KP_Insert KP_0 KP_Insert KP_0
+
+!map
+!keycode 79 = p P p P
+!keycode 84 = semicolon colon semicolon colon
+!keycode 87 = period greater period greater
+!keycode 90 = 0 parenright 0 parenright

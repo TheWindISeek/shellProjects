@@ -14,3 +14,21 @@ xmodmap -pke |less
 下载java环境
 想办法解决微信问题
 
+# clash
+```shell
+
+mkdir ~/clash
+cp Clash/clash ~/clash/
+cp Clash/*.yaml ~/.config/clash/
+cp Clash/*.mmdb ~/.config/clash/
+
+```
+
+
+# 下载常用的软件
+
+```shell
+sudo apt-get install nload
+sudo apt-get install tilix
+sudo apt-get install aptitude
+```
