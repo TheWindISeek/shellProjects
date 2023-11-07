@@ -3,10 +3,10 @@
 #temp=$[$count%2]
 if [ $1 -eq 1 ]
 then
-	xmodmap .Xmodmap
+	xmodmap ~/shellProjects/.Xmodmap
 	echo "apply change"
 else
-	xmodmap .XmodmapPre
+	xmodmap ~/shellProjects/.XmodmapPre
 	echo "convert to default"
 fi
 #count=$[$count+1]
