@@ -32,4 +32,5 @@ sudo apt-get install nload
 sudo apt-get install tilix
 sudo apt-get install aptitude
 git clone git@github.com:rupa/z.git
+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
 ```

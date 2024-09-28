@@ -1,8 +1,8 @@
 # network setting with proxy
 if [ $1 -eq 1 ]
 then
-	git config --global http.proxy 127.0.0.1:7890
-	git config --global https.proxy 127.0.0.1:7890
+	git config --global http.proxy 127.0.0.1:7899
+	git config --global https.proxy 127.0.0.1:7899
 #	git config --list
 	git config --global --get http.proxy
 	git config --global --get https.proxy
