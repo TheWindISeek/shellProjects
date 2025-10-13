@@ -129,7 +129,27 @@ alias note='/home/lucifer/shellProjects/save.sh'
 . /home/lucifer/shellProjects/z/z.sh
 alias reboot='/home/lucifer/shellProjects/detect_reboot.sh'
 alias poweroff='/home/lucifer/shellProjects/detect_poweroff.sh'
+alias setsound='/home/lucifer/shellProjects/lowersound.sh'
+alias print_monitor='/home/lucifer/shellProjects/monitor_process &'
+
+#alias bat='batcat'
 #alias pwd='/home/lucifer/shellProjects/detect_reboot.sh'
 #source ~/ros2_humble/install/setup.bash
 export PATH=/home/lucifer/.local/bin:$PATH
+export SPARK_HOME=/home/lucifer/spark-3.5.3-bin-hadoop3
+export PATH=$SPARK_HOME/bin:$PATH
+#export PATH=/home.lucifer/apache-maven-3.9.9/bin:$PATH
 #export PATH=/home/lucifer/shellProjects/detect.sh:$PATH
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH=$PATH:~/Codes/FlameGraph
+
+export ROS_HOSTNAME=main
+export ROS_MASTER_URI=http://main:11311
+
+. "$HOME/.cargo/env"
+
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
