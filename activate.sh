@@ -19,6 +19,24 @@ if [ "${_RL_ACTIVE:-}" = "1" ] && [ "${CONDA_DEFAULT_ENV:-}" = "$_target" ]; the
   return 0 2>/dev/null || exit 0
 fi
 
+# 已由 rl 管理，禁止嵌套/切换（先 rloff）
+if [ "${_RL_ACTIVE:-}" = "1" ] && [ "${CONDA_DEFAULT_ENV:-}" != "$_target" ]; then
+  echo "[rl] 已在 ${_RL_ENV_NAME:-$CONDA_DEFAULT_ENV} 中，请先 rloff 再切换到 ${_target}" >&2
+  unset _suffix _target
+  return 1 2>/dev/null || exit 1
+fi
+
+# 当前 conda 已是某个 rl*（含裸 conda activate），禁止再嵌套进另一个
+case "${CONDA_DEFAULT_ENV:-}" in
+  rl*)
+    if [ "${CONDA_DEFAULT_ENV}" != "$_target" ]; then
+      echo "[rl] 当前已在 ${CONDA_DEFAULT_ENV}，请先 rloff 或 conda deactivate，再进入 ${_target}" >&2
+      unset _suffix _target
+      return 1 2>/dev/null || exit 1
+    fi
+    ;;
+esac
+
 if ! command -v conda >/dev/null 2>&1; then
   if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     # shellcheck disable=SC1091

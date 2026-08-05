@@ -14,11 +14,15 @@ else
 fi
 
 _prev="${_RL_OLD_CONDA_ENV:-}"
-if [ -n "$_prev" ] && [ "$_prev" != "${_RL_ENV_NAME:-}" ] && [ "$_prev" != "base" ]; then
-  conda activate "$_prev" || conda deactivate
-else
-  conda deactivate
-fi
+# 若进入前就是某个 rl*，一律 deactivate，避免「退回另一个 rl*」造成假嵌套
+case "$_prev" in
+  rl*|base|"")
+    conda deactivate
+    ;;
+  *)
+    conda activate "$_prev" || conda deactivate
+    ;;
+esac
 
 unset _RL_ACTIVE _RL_ENV_NAME
 unset _RL_OLD_LD_LIBRARY_PATH _RL_HAD_LD_LIBRARY_PATH _RL_OLD_CONDA_ENV
