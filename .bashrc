@@ -131,25 +131,95 @@ alias reboot='/home/lucifer/shellProjects/detect_reboot.sh'
 alias poweroff='/home/lucifer/shellProjects/detect_poweroff.sh'
 alias setsound='/home/lucifer/shellProjects/lowersound.sh'
 alias print_monitor='/home/lucifer/shellProjects/monitor_process &'
-
+alias zotero='/home/lucifer/Applications/Zotero_linux-x86_64/zotero'
+alias blender='/home/lucifer/blender-5.0.1-linux-x64/blender'
 #alias bat='batcat'
 #alias pwd='/home/lucifer/shellProjects/detect_reboot.sh'
 #source ~/ros2_humble/install/setup.bash
 export PATH=/home/lucifer/.local/bin:$PATH
-export SPARK_HOME=/home/lucifer/spark-3.5.3-bin-hadoop3
-export PATH=$SPARK_HOME/bin:$PATH
+#export SPARK_HOME=/home/lucifer/spark-3.5.3-bin-hadoop3
+#export PATH=$SPARK_HOME/bin:$PATH
 #export PATH=/home.lucifer/apache-maven-3.9.9/bin:$PATH
 #export PATH=/home/lucifer/shellProjects/detect.sh:$PATH
 
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH=$PATH:~/Codes/FlameGraph
 
 export ROS_HOSTNAME=main
 export ROS_MASTER_URI=http://main:11311
 
+#. "$HOME/.cargo/env"
 . "$HOME/.cargo/env"
 
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+#export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+# opencode
+export PATH=/home/lucifer/.opencode/bin:$PATH
+
+export PATH="$HOME/.npm-global/bin:$PATH"
+export PATH="$(npm prefix -g)/bin:$PATH"
+
+# OpenClaw Completion
+#source "/home/lucifer/.openclaw/completions/openclaw.bash"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/home/lucifer/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/home/lucifer/miniconda3/etc/profile.d/conda.sh" ]; then
+#        . "/home/lucifer/miniconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/home/lucifer/miniconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+# <<< conda initialize <<<
+#conda deactivate
+alias rl='source /home/lucifer/shellProjects/activate.sh'
+alias rloff='source /home/lucifer/shellProjects/deactivate.sh'
+alias reloadwifi='/home/lucifer/shellProjects/reloadwifi.sh'
+# ---- 自定义提示符: (env)[lan-ip]/full/path: ----
+__prompt_lan_ip() {
+  # 取默认路由对应的本机局域网 IP
+  ip -4 route get 1.1.1.1 2>/dev/null \
+    | awk '{for (i = 1; i <= NF; i++) if ($i == "src") { print $(i + 1); exit }}'
+}
+
+__set_rl_prompt() {
+  local env_name="${_RL_ENV_NAME:-${CONDA_DEFAULT_ENV:-}}"
+  local lan_ip
+  lan_ip="$(__prompt_lan_ip)"
+  [ -z "$lan_ip" ] && lan_ip="no-ip"
+
+  # 256 色（多数终端都支持）
+  local R='\[\e[0m\]'
+  local DIM='\[\e[38;5;240m\]'    # 暗灰：括号/分隔
+  local ENV='\[\e[38;5;114m\]'    # 柔绿：环境
+  local IP='\[\e[38;5;180m\]'     # 浅杏：IP
+  local UH='\[\e[38;5;110m\]'     # 雾蓝：user@host
+  local PATHC='\[\e[38;5;75m\]'   # 亮蓝：路径
+  local PROMPT='\[\e[38;5;245m\]' # 提示符
+
+  if [ -n "$env_name" ] && [ "$env_name" != "base" ]; then
+    PS1="${DIM}(${ENV}${env_name}${DIM})[${IP}${lan_ip}${DIM}]${UH}\u@\h${DIM}:${PATHC}${PWD}${PROMPT}\$${R}"
+  else
+    PS1="${DIM}[${IP}${lan_ip}${DIM}]${UH}\u@\h${DIM}:${PATHC}${PWD}${PROMPT}\$${R}"
+  fi
+}
+# 若已有 PROMPT_COMMAND，追加而不是覆盖
+if [[ -n "${PROMPT_COMMAND:-}" ]]; then
+  PROMPT_COMMAND="__set_rl_prompt; ${PROMPT_COMMAND}"
+else
+  PROMPT_COMMAND="__set_rl_prompt"
+fi
+
+# >>> unilab completion >>>
+if [ -f "/home/lucifer/codes/rl/UniLab/scripts/completions/unilab.bash" ]; then
+    source "/home/lucifer/codes/rl/UniLab/scripts/completions/unilab.bash"
+fi
+# <<< unilab completion <<<
