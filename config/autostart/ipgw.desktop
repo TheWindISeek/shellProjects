@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/lucifer/shellProjects/tools/net/neu_ipgw.py
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=ipgw
+Name=ipgw
+Comment[en_US]=
+Comment=

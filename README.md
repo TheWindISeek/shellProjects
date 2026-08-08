@@ -31,11 +31,15 @@ Day-to-day: edit scripts and aliases in `shellrc.sh`. You usually do **not** nee
 shellProjects/
 ├── install.py          # hooks shellrc into ~/.bashrc
 ├── shellrc.sh          # aliases, sources, prompt
+├── config/             # saved desktop configs (reference only)
+│   └── autostart/      # GNOME Startup Applications snapshots
 ├── tools/
 │   ├── app/            # daily: search, keys, rl env, prompt
 │   ├── net/            # Wi-Fi, proxy, Clash, campus net
 │   └── sys/            # reboot/poweroff guards, process tools
-└── vendor/             # third-party (e.g. z)
+└── vendor/
+    ├── runme.sh        # list / check third-party deps
+    └── z/              # rupa/z (gitignored; clone if missing)
 ```
 
 ## Common aliases
@@ -78,16 +82,12 @@ Enable system proxy with `wall` after uncommenting it in `shellrc.sh`.
 
 ## Third-party
 
-`vendor/z` is [rupa/z](https://github.com/rupa/z). It is gitignored; if missing, `shellrc.sh` prints:
+Check / print required vendor deps:
 
 ```bash
-git clone --depth 1 https://github.com/rupa/z.git vendor/z
+bash vendor/runme.sh
 ```
 
-Optional apt packages:
-
-```bash
-sudo apt-get install nload tilix aptitude
-```
+`vendor/z` is [rupa/z](https://github.com/rupa/z) (gitignored). If missing, `runme.sh` and `shellrc.sh` print the clone command.
 
 List key bindings: `xmodmap -pke | less`
