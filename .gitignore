@@ -1,4 +1,4 @@
-z/
-ipgw.neu.edu.cn/*
-debug/
-__pycache__/*
+vendor/z/
+tools/net/ipgw.neu.edu.cn/*
+__pycache__/
+*.pyc

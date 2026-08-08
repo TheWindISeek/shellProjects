@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # 用法:
-#   source ~/shellProjects/activate.sh           # -> conda env: rl
-#   source ~/shellProjects/activate.sh unilab    # -> conda env: rlunilab
-#   source ~/shellProjects/activate.sh deepmimic # -> conda env: rldeepmimic
+#   source ~/shellProjects/tools/app/activate.sh           # -> conda env: rl
+#   source ~/shellProjects/tools/app/activate.sh unilab    # -> conda env: rlunilab
+#   source ~/shellProjects/tools/app/activate.sh deepmimic # -> conda env: rldeepmimic
 # 或 alias: rl / rl unilab / rl deepmimic
 
 _suffix="${1:-}"

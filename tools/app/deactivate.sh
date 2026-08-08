@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 用法: source ~/shellProjects/deactivate.sh
+# 用法: source ~/shellProjects/tools/app/deactivate.sh
 # 或 alias: rloff
 
 if [ -z "${_RL_ACTIVE:-}" ]; then
